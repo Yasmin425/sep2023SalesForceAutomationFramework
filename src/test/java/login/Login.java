@@ -19,6 +19,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import Utilities.PropertiesUtility;
+import basetest.BaseTest;
 
 
 public class Login extends BaseTest{
@@ -26,10 +27,10 @@ public class Login extends BaseTest{
 	
 	public static void LoginErrorMessage() {
 		
-		myLog.info("******Invalid login_to_Salesforce automation script started***********");
+		System.out.println("******Invalid login_to_Salesforce automation script started***********");
 		
 		String expected="Please enter your password.";
-		myLog.info("url is entered");
+		System.out.println("url is entered");
 
 		WebElement usernameEle = driver.findElement(By.xpath("//*[@id=\"username\"]"));
 		waitForVisibility(usernameEle, 5, "username textbox");
@@ -43,24 +44,25 @@ public class Login extends BaseTest{
         WebElement LoginErrorEle= driver.findElement(By.xpath("//*[@id=\"error\"]"));
         waitForVisibility(LoginErrorEle, 5, "Login error alert");
 		String actual= LoginErrorEle.getText();
-		myLog.info("text is extracted from Login error element");
+		
 		
 		Assert.assertEquals(actual, expected,"Pass: testcase passed");
+		System.out.println("text is extracted from Login error element");
 		
-		myLog.info("******login_to_salesforce failed***********");
-		myLog.info("******login_to_salesforce automation script ended***********");
+		System.out.println("******login_to_salesforce failed***********");
+		System.out.println("******login_to_salesforce automation script ended***********");
 	
 
 	}
 	
 	@Test
 	
-public static void LoginToSalesforce(){
+public static void LoginToSalesforce() throws InterruptedException{
 		
-	    myLog.info("******login_to_Salesforce automation script started***********");
+	    System.out.println("******login_to_Salesforce automation script started***********");
 	    
 		String expected="Home";
-		myLog.info("url is entered");
+		System.out.println("url is entered");
 
 	
 		WebElement usernameEle = driver.findElement(By.id("username"));
@@ -73,25 +75,27 @@ public static void LoginToSalesforce(){
 		WebElement buttonEle=driver.findElement(By.id("Login"));
 		clickElement(buttonEle,"login button");
 		
-        WebElement HomeEle= driver.findElement(By.xpath("/html/body/div/div[1]/div[1]/div/nav/ul/li[1]/a"));
+		Thread.sleep(5000);
+		
+        WebElement HomeEle= driver.findElement(By.xpath("//*[@id=\"home_Tab\"]/a"));
         waitForVisibility(HomeEle, 5, "Home page");
 		String actual= HomeEle.getText();
-		myLog.info("text is extracted from Home tab element");
+		System.out.println("text is extracted from Home tab element");
 		Assert.assertEquals(actual, expected,"Pass: testcase passed");
 		
-		myLog.info("******login_to_salesforce automation script ended***********");
+		System.out.println("******login_to_salesforce automation script ended***********");
 		
 		
 
 	}
 	@Test
-public static void CheckRememberMe() {
+public static void CheckRememberMe() throws InterruptedException {
 	
-	myLog.info("******login_to_Salesforce automation script started***********");
+	System.out.println("******login_to_Salesforce automation script started***********");
 	
 	String expected="Home";
 	String expected2="Username";
-	myLog.info("url is entered");
+	System.out.println("url is entered");
 
 	WebElement usernameEle = driver.findElement(By.id("username"));
 	waitForVisibility(usernameEle, 5, "User name text box");
@@ -106,10 +110,12 @@ public static void CheckRememberMe() {
 	WebElement buttonEle=driver.findElement(By.id("Login"));
 	clickElement(buttonEle,"login button");
 	
+	Thread.sleep(5000);
+	
     WebElement HomeTextEle= driver.findElement(By.xpath("//li[@id='home_Tab']"));
     waitForVisibility(HomeTextEle, 5,2, "Home page");
 	String actual= HomeTextEle.getText();
-	myLog.info("text is extracted from Home tab element");
+	System.out.println("text is extracted from Home tab element");
 	Assert.assertEquals(actual, expected,"Pass: testcase passed");
 	
 	WebElement MenuEle=driver.findElement(By.id("userNavLabel"));
@@ -118,13 +124,15 @@ public static void CheckRememberMe() {
 	WebElement LogoutEle=driver.findElement(By.xpath("//*[@id='userNav-menuItems']/a[5]"));
 	clickElement(LogoutEle,"LogOut Tab");
 	
+	Thread.sleep(5000);
+	
 	WebElement LoginPageEle= driver.findElement(By.xpath("//*[@id=\"usernamegroup\"]/label"));
 	waitForVisibility(LoginPageEle, 5,2, "Login page");
 	String actual2= LoginPageEle.getText();
-	myLog.info("text is extracted from Username element");
+	System.out.println("text is extracted from Username element");
 	Assert.assertEquals(actual2, expected2,"Pass: testcase passed");
 	
-	myLog.info("******login_to_salesforce automation script ended***********");
+	System.out.println("******login_to_salesforce automation script ended***********");
 
 	
 
@@ -133,11 +141,11 @@ public static void CheckRememberMe() {
 	@Test
 	public static void Forgotpassword() {
 		
-		//myLog.info("******login_to_Salesforce automation script started***********");
+		//System.out.println("******login_to_Salesforce automation script started***********");
 		
 		String expected="Forgot Your Password";
 	
-		//myLog.info("url is entered");
+		//System.out.println("url is entered");
 
 		WebElement LinkEle=driver.findElement(By.id("forgot_password_link"));
 		clickElement(LinkEle,"Forgot your password? Link");
@@ -145,7 +153,7 @@ public static void CheckRememberMe() {
 		WebElement ForgotYourPWPageEle= driver.findElement(By.xpath("//*[@id=\"header\"]"));
 		waitForVisibility(ForgotYourPWPageEle, 5,2, "Forgot your password page");
 		String actual= ForgotYourPWPageEle.getText();
-		//myLog.info("text is extracted from Forgot Your Password element");
+		//System.out.println("text is extracted from Forgot Your Password element");
 		Assert.assertEquals(actual, expected,"Pass: testcase passed");
 		
 		WebElement usernameEle = driver.findElement(By.id("un"));
@@ -156,7 +164,7 @@ public static void CheckRememberMe() {
 		clickElement(buttonEle,"Continue button");
 		
 		
-		//myLog.info("******login_to_salesforce automation script ended***********");
+		//System.out.println("******login_to_salesforce automation script ended***********");
 		
 		
 
@@ -165,10 +173,10 @@ public static void CheckRememberMe() {
 	
 public static void ForgotPasswordandUsername() {
 		
-		myLog.info("******Invalid login_to_Salesforce automation script started***********");
+		System.out.println("******Invalid login_to_Salesforce automation script started***********");
 		
 		String expected= "Please check your username and password. If you still can't log in, contact your Salesforce administrator.";
-		myLog.info("url is entered");
+		System.out.println("url is entered");
 
 		WebElement usernameEle = driver.findElement(By.xpath("//*[@id=\"username\"]"));
 		waitForVisibility(usernameEle, 5, "username textbox");
@@ -182,12 +190,12 @@ public static void ForgotPasswordandUsername() {
         WebElement LoginErrorEle= driver.findElement(By.xpath("//*[@id=\"error\"]"));
         waitForVisibility(LoginErrorEle, 5, "Login error alert");
 		String actual= LoginErrorEle.getText();
-		myLog.info("text is extracted from Login error element");
+		System.out.println("text is extracted from Login error element");
 		
 		Assert.assertEquals(actual, expected,"Pass: testcase passed");
 		
-		myLog.info("******login_to_salesforce failed***********");
-		myLog.info("******login_to_salesforce automation script ended***********");
+		System.out.println("******login_to_salesforce failed***********");
+		System.out.println("******login_to_salesforce automation script ended***********");
 	
 
 	}

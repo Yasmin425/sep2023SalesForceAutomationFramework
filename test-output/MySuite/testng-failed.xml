@@ -5,13 +5,9 @@
     <classes>
       <class name="login.Login">
         <methods>
-          <include name="LoginErrorMessage"/>
           <include name="setUpBeforeTestMethod"/>
           <include name="tearDownAfterTestMethod"/>
-          <include name="Forgotpassword"/>
-          <include name="ForgotPasswordandUsername"/>
           <include name="CheckRememberMe"/>
-          <include name="LoginToSalesforce"/>
         </methods>
       </class> <!-- login.Login -->
     </classes>

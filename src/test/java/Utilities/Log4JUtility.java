@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 public class Log4JUtility {
 	
-	protected Logger log=null;
+	protected static Logger log=null;
 	protected static Log4JUtility ob=null;
 	
 	
