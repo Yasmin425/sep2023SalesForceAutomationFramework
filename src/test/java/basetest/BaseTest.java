@@ -1,6 +1,7 @@
 
 package basetest;
 
+import java.awt.AWTException;
 import java.time.Duration;
 import java.util.List;
 import java.util.Properties;
@@ -25,6 +26,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 import org.testng.reporters.jq.Main;
 
 import Utilities.ExtentReportsUtility;
@@ -321,6 +323,100 @@ public static void ToCalanderHandler()
 	}
 	
 	
+}
+
+public static void Login() throws InterruptedException{
+	
+    System.out.println("******login_to_Salesforce automation script started***********");
+    
+	String expected="Home";
+	System.out.println("url is entered");
+
+
+	WebElement usernameEle = driver.findElement(By.id("username"));
+	waitForVisibility(usernameEle, 5, "User Name textbox");
+	enterText(usernameEle,"yasmin@tekarch.com","username");
+	
+	WebElement passwordEle = driver.findElement(By.id("password"));
+	enterText(passwordEle,"TGByhn@123","password");
+
+	WebElement buttonEle=driver.findElement(By.id("Login"));
+	clickElement(buttonEle,"login button");
+	
+	Thread.sleep(5000);
+	
+    WebElement HomeEle= driver.findElement(By.xpath("//*[@id=\"home_Tab\"]/a"));
+    waitForVisibility(HomeEle, 5, "Home page");
+	String actual= HomeEle.getText();
+	System.out.println("text is extracted from Home tab element");
+	Assert.assertEquals(actual, expected,"Pass: testcase passed");
+	
+	System.out.println("******login_to_salesforce automation script ended***********");
+	
+	
+
+}
+
+
+public static void Logout() throws InterruptedException{
+	
+	System.out.println("******logout_to_Salesforce automation script started***********");
+	
+	String expected2="Username";
+	
+	WebElement UserMenuEle= driver.findElement(By.id("userNavLabel"));
+	clickElement(UserMenuEle,"User name dropdown");
+	  
+	Thread.sleep(2000);
+	  
+	WebElement LogoutEle= driver.findElement(By.xpath("//*[@id=\"userNav-menuItems\"]/a[5]"));
+	waitForVisibility(LogoutEle, 5, "Logout Tab");
+	clickElement(LogoutEle,"Logout Tab");
+	  		  
+	Thread.sleep(2000);
+	
+	WebElement LoginPageEle= driver.findElement(By.xpath("//*[@id=\"usernamegroup\"]/label"));
+	waitForVisibility(LoginPageEle, 5, "Login Page"); 
+	String actua2= LoginPageEle.getText();
+	System.out.println("text is extracted from Login Page element"); 
+	Assert.assertEquals(actua2, expected2,"Pass: testcase passed");
+		
+	Thread.sleep(2000);	
+	System.out.println("******logout_to_Salesforce automation script ended***********");  
+}
+
+public static void ClickLeadsTab() throws InterruptedException{
+	
+	  String expected2="Leads";
+	  WebElement LeadsTabEle= driver.findElement(By.id("Lead_Tab"));
+	  clickElement(LeadsTabEle,"Leads Tab");
+	  Thread.sleep(2000);
+	  
+		
+	  WebElement LeadsPageEle= driver.findElement(By.className("pageType")); 
+	  waitForVisibility(LeadsPageEle, 5, "Leads Page"); 
+	  String actual2= LeadsPageEle.getText();
+	  System.out.println("text is extracted from Leads Page element");
+	  Assert.assertEquals(actual2, expected2,"Pass: testcase passed");
+	  Thread.sleep(2000);
+		 
+}
+
+public static void ClickContactsTab() throws InterruptedException{
+	
+	  String expected2="Contacts";
+	  WebElement ContactsTabEle= driver.findElement(By.id("Contact_Tab"));
+	  clickElement(ContactsTabEle,"Contacts Tab");
+	  Thread.sleep(2000);
+	  
+		
+	  WebElement ContactsPageEle= driver.findElement(By.className("pageType")); 
+	  waitForVisibility(ContactsPageEle, 5, "Contacts Page"); 
+	  String actual2= ContactsPageEle.getText();
+	  System.out.println("text is extracted from Contacts Page element");
+	  Assert.assertEquals(actual2, expected2,"Pass: testcase passed");
+	  Thread.sleep(2000);
+		 
 }
 
 }
